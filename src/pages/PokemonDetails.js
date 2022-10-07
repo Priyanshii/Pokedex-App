@@ -16,11 +16,17 @@ const PokemonDetails = () => {
     const data = await response.json();
     console.log(data);
     setDetails(data);
-    console.log(details);
   };
+  if (!details.id) {
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
   return (
     <Container>
-      <img src={details.sprites.front_default} alt={details.name} />
+      <img src={details["sprites"]["front_default"]} alt={details.name} />
       <AdditionalInfo>
         <Detail>
           <h4>Name: </h4>
@@ -37,8 +43,8 @@ const PokemonDetails = () => {
         <Detail>
           <h4>Abilities: </h4>
           <div>
-            {details.abilities.map((item) => {
-              return <p>{item.ability.name}</p>;
+            {details.abilities.map((item, index) => {
+              return <p>{item.ability["name"]}</p>;
             })}
           </div>
         </Detail>
@@ -46,7 +52,7 @@ const PokemonDetails = () => {
           <h4>Moves: </h4>
           <div>
             {details.moves.map((item) => {
-              return <p>{item.move.name} </p>;
+              return <p>{item.move["name"]} </p>;
             })}
           </div>
         </Detail>
@@ -54,7 +60,7 @@ const PokemonDetails = () => {
           <h4>Stats: </h4>
           <div>
             {details.stats.map((item) => {
-              return <p>{item.stat.name} </p>;
+              return <p>{item.stat["name"]} </p>;
             })}
           </div>{" "}
         </Detail>
