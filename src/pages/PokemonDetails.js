@@ -9,7 +9,7 @@ const PokemonDetails = () => {
   useEffect(() => {
     console.log(params);
     getPokemon(params.id);
-  }, [params.id]);
+  }, [params]);
 
   const getPokemon = async (name) => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
